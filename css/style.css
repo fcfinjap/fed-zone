@@ -8,8 +8,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 450px;
-  height: 450px;
+  width: 550px;
+  height: 550px;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.4);
   padding: 0px;
@@ -43,7 +43,7 @@ body {
 .box h5 {
   /**font-size: 20px;**/
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 4%;
   font-size: 150%;
   letter-spacing: 1px;
   font-weight: bold;
@@ -82,11 +82,11 @@ ul {
 }
 
 .fa-2 {
-  font-size: .6em;
+  font-size: .9em;
 }
 
 .fa-3 {
-  font-size: 1.1em;
+  font-size: 1.6em;
   margin-top: 10%;
 }
 
