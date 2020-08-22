@@ -109,7 +109,7 @@ ul {
 /* #Media Queries
 ================================================== */
 
-@media only screen and (max-width: 560px) {
+@media only screen and (max-width: 560px), screen and (max-height: 560px) {
   .box {
     width: 300px;
     height: 300px;
