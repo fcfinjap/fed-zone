@@ -172,6 +172,10 @@ ul {
   margin-bottom: 2.5%;
 }
 
+.sotd-date-mobile {
+  display: none;    
+}
+
 .sotd-link-box {
   width: 17%;
   margin-top: 2.5%;
@@ -278,7 +282,9 @@ ul {
 
   .sotd-container {  }
 
-  .sotd {  }
+  .sotd {
+    height: 22%;
+  }
 
   .img-wrap {
     display: none;
@@ -286,7 +292,7 @@ ul {
 
   .sotd-content-container {
     width: 70%;
-    height: 75%;
+    height: 80%;
   }
 
   .sotd-title {
@@ -298,6 +304,13 @@ ul {
     font-size: 37%;
     margin-top: 1%;
     margin-bottom: 1%;
+  }
+
+  .sotd-date-mobile {
+    display: flex;
+    font-size: 37%;
+    font-weight: 150;
+    font-style: italic;
   }
 
   .sotd-link-box {
