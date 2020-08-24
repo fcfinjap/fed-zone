@@ -175,6 +175,13 @@ ul {
   text-align: left;
 }
 
+.strokes-taat-title {
+  font-size: 80%;
+  letter-spacing: 1px;
+  padding-top: 1%;
+  padding-bottom: 0.5%;
+}
+
 .sotd-description {
   font-size: 60%;
   text-align: justify;
@@ -322,6 +329,13 @@ ul {
   .sotd-title {
     font-size: 80%;
     letter-spacing: 1px;
+  }
+
+  .strokes-taat-title {
+    font-size: 70%;
+    letter-spacing: 0.4px;
+    padding-top: 0.7%;
+    padding-bottom: 0%;
   }
 
   .sotd-description {
