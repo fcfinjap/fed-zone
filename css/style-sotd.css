@@ -91,6 +91,16 @@ ul {
   margin: auto;
   margin-top: 6%;
   overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0);
+}
+
+.sotd-container::-webkit-scrollbar {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.sotd-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .sotd {
@@ -289,7 +299,10 @@ ul {
     height: 3.5%;
   }
 
-  .sotd-container {  }
+  .sotd-container {
+    width: 95%;
+    height: 77%;
+  }
 
   .sotd {
     height: 30%;
