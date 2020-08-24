@@ -148,8 +148,8 @@ ul {
 }
 
 .sotd-content-container {
-  width: 65%;
-  height: 75%;
+  width: 55%;
+  height: 85%;
   margin-top: 2.5%;
   margin-bottom: 2.5%;
   margin-left: 2%;
@@ -159,7 +159,7 @@ ul {
 }
 
 .sotd-title {
-  font-size: 95%;
+  font-size: 100%;
   letter-spacing: 2px;
   font-weight: bold;
   text-align: left;
@@ -168,7 +168,7 @@ ul {
 .sotd-description {
   font-size: 60%;
   text-align: justify;
-  margin-top: 2.5%;
+  margin-top: 1.5%;
   margin-bottom: 2.5%;
 }
 
@@ -177,7 +177,8 @@ ul {
 }
 
 .sotd-link-box {
-  width: 17%;
+  width: 25%;
+  height: 100%;
   margin-top: 2.5%;
   margin-bottom: 2.5%;
   display: flex;
@@ -187,14 +188,22 @@ ul {
 .sotd-link-box ul {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
 }
 
 .sotd-link-box li a {
   font-size: 175%;
+  display: flex;
 }
 
 .link-text {
-  display: none;
+  display: flex;
+  font-size: 40%;
+  letter-spacing: 0.5px;
+  text-align: left;
+  align-self: center;
+  margin-left: 5%;
 }
 
 .bottom-row-container {
@@ -283,7 +292,7 @@ ul {
   .sotd-container {  }
 
   .sotd {
-    height: 22%;
+    height: 30%;
   }
 
   .img-wrap {
@@ -291,24 +300,26 @@ ul {
   }
 
   .sotd-content-container {
-    width: 70%;
-    height: 80%;
+    width: 120%;
+    height: 92%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
   }
 
   .sotd-title {
-    font-size: 55%;
+    font-size: 80%;
     letter-spacing: 1px;
   }
 
   .sotd-description {
-    font-size: 37%;
+    font-size: 50%;
     margin-top: 1%;
     margin-bottom: 1%;
   }
 
   .sotd-date-mobile {
     display: flex;
-    font-size: 37%;
+    font-size: 50%;
     font-weight: 150;
     font-style: italic;
   }
@@ -324,17 +335,12 @@ ul {
   }
 
   .sotd-link-box li a {
-    font-size: 95%;
     display: flex;
+    justify-content: center;
   }
 
   .link-text {
-    display: flex;
-    font-size: 40%;
-    letter-spacing: 0.5px;
-    text-align: left;
-    align-self: center;
-    margin-left: 5%;
+    display: none;
   }
 
   .bottom-row-container {
