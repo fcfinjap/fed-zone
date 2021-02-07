@@ -1,6 +1,159 @@
-/* // Axios setup
-import { get } from 'axios'; */
+// Yext Knowledge API inputs
+var YEXT_ACCOUNT_ID = '3416322';
+var YEXT_API_KEY = '54840b0235655e0300e29956e1651911'
+var YEXT_VERSION = '20210207';
+var YEXT_SORT = '[{"datePosted": "DESCENDING"}]';
+var YEXT_TYPE = 'ce_sotd'
 
+// Format Entities:List Knowledge API request
+var apiUrl = `https://api.yext.com/v2/accounts/${YEXT_ACCOUNT_ID}/entities?api_key=${YEXT_API_KEY}&v=${YEXT_VERSION}&sortBy=${YEXT_SORT}&entityTypes=${YEXT_TYPE}`; 
+
+// Pull Yext Song data
+const getYextSotds = axios.get(apiUrl)
+    .then((response) => response)
+    .then((data) => {
+        return data;
+    })
+    .catch((error) => console.error(error));
+
+function addSotds(songList) {
+    console.log(songList);
+    for (song in songList) {
+        console.log(songList[song]);
+        generateSotdDiv(songList[song]);
+    }
+}
+
+function generateSotdDiv(songInfo) {
+    // Initialize sotd
+    var sotd = document.createElement("div");
+    sotd.className = "sotd";
+
+    // Add image to sotd
+    var imgWrap = document.createElement("div");
+    imgWrap.className = "img-wrap";
+
+    var img = document.createElement("img");
+    img.src = songInfo.c_albumCover.image.url;
+    img.alt = songInfo.c_albumCover.image.alternateText;
+    img.className = "sotd-img";
+
+    var sotdDate = document.createElement("div");
+    sotdDate.className = "sotd-date";
+    var date = document.createElement("span");
+    var postedDate = new Date(songInfo.datePosted);
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var monthString = document.createTextNode(months[postedDate.getMonth()]);
+    var dayString = document.createTextNode(ordinalSuffixOf(postedDate.getDay() + 1));
+    var yearString = document.createTextNode(postedDate.getFullYear());
+    var lineBreak1 = document.createElement("br");
+    var lineBreak2 = document.createElement("br");
+
+    date.appendChild(monthString);
+    date.appendChild(lineBreak1);
+    date.appendChild(dayString);
+    date.appendChild(lineBreak2);
+    date.appendChild(yearString);
+    sotdDate.appendChild(date);
+
+    imgWrap.appendChild(img);
+    imgWrap.appendChild(sotdDate);
+    sotd.appendChild(imgWrap);
+
+    // Add content container to sotd
+    var sotdContentContainer = document.createElement("div");
+    sotdContentContainer.className = "sotd-content-container";
+
+    var sotdTitle = document.createElement("div");
+    sotdTitle.className = "sotd-title";
+    var titleText = document.createTextNode(songInfo.name + " | " + songInfo.c_artist);
+    sotdTitle.appendChild(titleText);
+
+    var sotdDesc = document.createElement("div");
+    sotdDesc.className = "sotd-description";
+    var descText = document.createTextNode(songInfo.description);
+    sotdDesc.appendChild(descText);
+
+    var sotdMobileDate = document.createElement("div");
+    sotdMobileDate.className = "sotd-date-mobile";
+    var mobileDateText = document.createTextNode(months[postedDate.getMonth()] + " " + ordinalSuffixOf(postedDate.getDay() + 1) + ", " + postedDate.getFullYear());
+    sotdMobileDate.appendChild(mobileDateText);
+
+    sotdContentContainer.appendChild(sotdTitle);
+    sotdContentContainer.appendChild(sotdDesc);
+    sotdContentContainer.appendChild(sotdMobileDate);
+    sotd.appendChild(sotdContentContainer);
+
+    // Add sotd link box to sotd
+    var sotdLinks = document.createElement("div");
+    sotdLinks.className = "sotd-link-box";
+
+    var list = document.createElement("ul");
+
+    var spotify = document.createElement("li");
+    var spotifyLink = document.createElement("a");
+    spotifyLink.href = songInfo.c_spotifyURL;
+    spotifyLink.target = "_blank";
+    var spotifyLogo = document.createElement("i");
+    spotifyLogo.classList.add("fa", "fa-spotify", "fa-2");
+    spotifyLogo.setAttribute('aria-hidden', 'true');
+    var spotifyLinkText = document.createElement("div");
+    spotifyLinkText.className = "link-text";
+    var spotifyTextNode = document.createTextNode("Spotify");
+    spotifyLinkText.appendChild(spotifyTextNode);
+    spotifyLink.appendChild(spotifyLogo);
+    spotifyLink.appendChild(spotifyLinkText);
+    spotify.appendChild(spotifyLink);
+    list.appendChild(spotify);
+
+    var appleMusic = document.createElement("li");
+    var aMLink = document.createElement("a");
+    aMLink.href = songInfo.c_appleMusicURL;
+    aMLink.target = "_blank";
+    var aMLogo = document.createElement("i");
+    aMLogo.classList.add("fab", "fa-itunes", "fa-2");
+    aMLogo.setAttribute('aria-hidden', 'true');
+    var aMLinkText = document.createElement("div");
+    aMLinkText.className = "link-text";
+    var aMTextNode = document.createTextNode("Apple Music");
+    aMLinkText.appendChild(aMTextNode);
+    aMLink.appendChild(aMLogo);
+    aMLink.appendChild(aMLinkText);
+    appleMusic.appendChild(aMLink);
+    list.appendChild(appleMusic);
+
+    sotdLinks.appendChild(list);
+    sotd.appendChild(sotdLinks);
+
+    // Add sotd to container
+    var element = document.getElementById("sotd-container");
+    element.appendChild(sotd);
+}
+
+function ordinalSuffixOf(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
+}
+const displaySotds = async () => {
+    const songs = await getYextSotds;
+    console.log(songs);
+    addSotds(songs.data.response.entities);
+};
+
+displaySotds();
+
+/* 
+(JSON object for testing API issues)
 var songs = [
     {
         datePosted: '2020-08-24',
@@ -146,155 +299,4 @@ var songs = [
             entityType: 'ce_sotd'
         }
     }
-]
-
-
-/* // Yext Knowledge API inputs
-var YEXT_ACCOUNT_ID = '3416322';
-var YEXT_API_KEY = '54840b0235655e0300e29956e1651911'
-var YEXT_VERSION = '20210130';
-var YEXT_SORT = '[{"datePosted": "DESCENDING"}]';
-var YEXT_TYPE = 'ce_sotd'
-
-// Format Entities:List Knowledge API request
-var apiUrl = `https://api.yext.com/v2/accounts/${YEXT_ACCOUNT_ID}/entities?api_key=${YEXT_API_KEY}&v=${YEXT_VERSION}&sortBy=${YEXT_SORT}&entityTypes=${YEXT_TYPE}`; 
-
-// Pull Yext Song data
-function getYextSotds() {
-    axios.get(apiUrl)
-    .then(function (response) {
-        return response.data.response.entities;
-    })
-    .catch(function (error) {
-        return "An error has occured.";
-    })
-}  */
-
-function addSotds(songList) {
-    for (song in songList) {
-        generateSotdDiv(songList[song]);
-    }
-}
-
-function generateSotdDiv(songInfo) {
-    // Initialize sotd
-    var sotd = document.createElement("div");
-    sotd.className = "sotd";
-
-    // Add image to sotd
-    var imgWrap = document.createElement("div");
-    imgWrap.className = "img-wrap";
-
-    var img = document.createElement("img");
-    img.src = songInfo.c_albumCover.image.url;
-    img.alt = songInfo.c_albumCover.image.alternateText;
-    img.className = "sotd-img";
-
-    var sotdDate = document.createElement("div");
-    sotdDate.className = "sotd-date";
-    var date = document.createElement("span");
-    var postedDate = new Date(songInfo.datePosted);
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var monthString = document.createTextNode(months[postedDate.getMonth()]);
-    var dayString = document.createTextNode(ordinalSuffixOf(postedDate.getDay() + 1));
-    var yearString = document.createTextNode(postedDate.getFullYear());
-    var lineBreak1 = document.createElement("br");
-    var lineBreak2 = document.createElement("br");
-
-    date.appendChild(monthString);
-    date.appendChild(lineBreak1);
-    date.appendChild(dayString);
-    date.appendChild(lineBreak2);
-    date.appendChild(yearString);
-    sotdDate.appendChild(date);
-
-    imgWrap.appendChild(img);
-    imgWrap.appendChild(sotdDate);
-    sotd.appendChild(imgWrap);
-
-    // Add content container to sotd
-    var sotdContentContainer = document.createElement("div");
-    sotdContentContainer.className = "sotd-content-container";
-
-    var sotdTitle = document.createElement("div");
-    sotdTitle.className = "sotd-title";
-    var titleText = document.createTextNode(songInfo.name + " | " + songInfo.c_artist);
-    sotdTitle.appendChild(titleText);
-
-    var sotdDesc = document.createElement("div");
-    sotdDesc.className = "sotd-description";
-    var descText = document.createTextNode(songInfo.description);
-    sotdDesc.appendChild(descText);
-
-    var sotdMobileDate = document.createElement("div");
-    sotdMobileDate.className = "sotd-date-mobile";
-    var mobileDateText = document.createTextNode(months[postedDate.getMonth()] + " " + ordinalSuffixOf(postedDate.getDay() + 1) + ", " + postedDate.getFullYear());
-    sotdMobileDate.appendChild(mobileDateText);
-
-    sotdContentContainer.appendChild(sotdTitle);
-    sotdContentContainer.appendChild(sotdDesc);
-    sotdContentContainer.appendChild(sotdMobileDate);
-    sotd.appendChild(sotdContentContainer);
-
-    // Add sotd link box to sotd
-    var sotdLinks = document.createElement("div");
-    sotdLinks.className = "sotd-link-box";
-
-    var list = document.createElement("ul");
-
-    var spotify = document.createElement("li");
-    var spotifyLink = document.createElement("a");
-    spotifyLink.href = songInfo.c_spotifyURL;
-    spotifyLink.target = "_blank";
-    var spotifyLogo = document.createElement("i");
-    spotifyLogo.classList.add("fa", "fa-spotify", "fa-2");
-    spotifyLogo.setAttribute('aria-hidden', 'true');
-    var spotifyLinkText = document.createElement("div");
-    spotifyLinkText.className = "link-text";
-    var spotifyTextNode = document.createTextNode("Spotify");
-    spotifyLinkText.appendChild(spotifyTextNode);
-    spotifyLink.appendChild(spotifyLogo);
-    spotifyLink.appendChild(spotifyLinkText);
-    spotify.appendChild(spotifyLink);
-    list.appendChild(spotify);
-
-    var appleMusic = document.createElement("li");
-    var aMLink = document.createElement("a");
-    aMLink.href = songInfo.c_appleMusicURL;
-    aMLink.target = "_blank";
-    var aMLogo = document.createElement("i");
-    aMLogo.classList.add("fab", "fa-itunes", "fa-2");
-    aMLogo.setAttribute('aria-hidden', 'true');
-    var aMLinkText = document.createElement("div");
-    aMLinkText.className = "link-text";
-    var aMTextNode = document.createTextNode("Apple Music");
-    aMLinkText.appendChild(aMTextNode);
-    aMLink.appendChild(aMLogo);
-    aMLink.appendChild(aMLinkText);
-    appleMusic.appendChild(aMLink);
-    list.appendChild(appleMusic);
-
-    sotdLinks.appendChild(list);
-    sotd.appendChild(sotdLinks);
-
-    // Add sotd to container
-    var element = document.getElementById("sotd-container");
-    element.appendChild(sotd);
-}
-
-function ordinalSuffixOf(i) {
-    var j = i % 10,
-        k = i % 100;
-    if (j == 1 && k != 11) {
-        return i + "st";
-    }
-    if (j == 2 && k != 12) {
-        return i + "nd";
-    }
-    if (j == 3 && k != 13) {
-        return i + "rd";
-    }
-    return i + "th";
-}
-
-addSotds(songs);
+] */
