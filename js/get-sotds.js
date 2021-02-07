@@ -1,9 +1,23 @@
 // Yext Knowledge API inputs
 var YEXT_ACCOUNT_ID = '3416322';
 var YEXT_API_KEY = '54840b0235655e0300e29956e1651911'
-var YEXT_VERSION = '20210207';
 var YEXT_SORT = '[{"datePosted": "DESCENDING"}]';
-var YEXT_TYPE = 'ce_sotd'
+var YEXT_TYPE = 'ce_sotd';
+
+var today = new Date();
+var dd = today.getUTCDate();
+var mm = today.getUTCMonth() + 1; 
+var yyyy = today.getUTCFullYear();
+
+if(dd < 10) {
+    dd = '0' + dd;
+} 
+
+if(mm < 10) {
+    mm = '0' + mm;
+} 
+
+var YEXT_VERSION = yyyy + mm + dd;
 
 // Format Entities:List Knowledge API request
 var apiUrl = `https://cors-anywhere.herokuapp.com/https://api.yext.com/v2/accounts/${YEXT_ACCOUNT_ID}/entities?api_key=${YEXT_API_KEY}&v=${YEXT_VERSION}&sortBy=${YEXT_SORT}&entityTypes=${YEXT_TYPE}`; 
