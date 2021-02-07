@@ -43,9 +43,9 @@ function generateSotdDiv(songInfo) {
     var date = document.createElement("span");
     var postedDate = new Date(songInfo.datePosted);
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var monthString = document.createTextNode(months[postedDate.getMonth()]);
-    var dayString = document.createTextNode(ordinalSuffixOf(postedDate.getDay() + 1));
-    var yearString = document.createTextNode(postedDate.getFullYear());
+    var monthString = document.createTextNode(months[postedDate.getUTCMonth()]);
+    var dayString = document.createTextNode(ordinalSuffixOf(postedDate.getUTCDate()));
+    var yearString = document.createTextNode(postedDate.getUTCFullYear());
     var lineBreak1 = document.createElement("br");
     var lineBreak2 = document.createElement("br");
 
@@ -76,7 +76,7 @@ function generateSotdDiv(songInfo) {
 
     var sotdMobileDate = document.createElement("div");
     sotdMobileDate.className = "sotd-date-mobile";
-    var mobileDateText = document.createTextNode(months[postedDate.getMonth()] + " " + ordinalSuffixOf(postedDate.getDay() + 1) + ", " + postedDate.getFullYear());
+    var mobileDateText = document.createTextNode(months[postedDate.getUTCMonth()] + " " + ordinalSuffixOf(postedDate.getUTCDate()) + ", " + postedDate.getUTCFullYear());
     sotdMobileDate.appendChild(mobileDateText);
 
     sotdContentContainer.appendChild(sotdTitle);
