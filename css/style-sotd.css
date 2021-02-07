@@ -169,18 +169,20 @@ ul {
 }
 
 .sotd-title {
-  font-size: vmin;
+  font-size: 90%;
   letter-spacing: 2px;
   font-weight: bold;
   text-align: left;
   white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
-.strokes-taat-title {
-  font-size: 80%;
-  letter-spacing: 1px;
-  padding-top: 1%;
-  padding-bottom: 0.5%;
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sotd-title::-webkit-scrollbar {
+  display: none;
 }
 
 .sotd-description {
@@ -188,6 +190,9 @@ ul {
   text-align: justify;
   margin-top: 1.5%;
   margin-bottom: 2.5%;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0);
 }
 
 .sotd-date-mobile {

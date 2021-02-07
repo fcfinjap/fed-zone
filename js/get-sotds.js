@@ -1,26 +1,6 @@
 /* // Axios setup
-import axios from 'axios';
+import { get } from 'axios'; */
 
-// Yext Knowledge API inputs
-var YEXT_ACCOUNT_ID = '3416322';
-var YEXT_API_KEY = '54840b0235655e0300e29956e1651911'
-var YEXT_VERSION = '20210130';
-var YEXT_SORT = '[{"datePosted": "DESCENDING"}]';
-var YEXT_TYPE = 'ce_sotd'
-
-// Format Entities:List Knowledge API request
-var apiUrl = `https://api.yext.com/v2/accounts/${YEXT_ACCOUNT_ID}/entities?api_key=${YEXT_API_KEY}&v=${YEXT_VERSION}&sortBy=${YEXT_SORT}&entityTypes=${YEXT_TYPE}`; */
-
-/* // Pull Yext Song data
-function getYextSotds() {
-    axios.get(apiUrl)
-    .then(function (response) {
-        return response.data.response.entities;
-    })
-    .catch(function (error) {
-        return "An error has occured.";
-    })
-} */
 var songs = [
     {
         datePosted: '2020-08-24',
@@ -167,6 +147,28 @@ var songs = [
         }
     }
 ]
+
+
+/* // Yext Knowledge API inputs
+var YEXT_ACCOUNT_ID = '3416322';
+var YEXT_API_KEY = '54840b0235655e0300e29956e1651911'
+var YEXT_VERSION = '20210130';
+var YEXT_SORT = '[{"datePosted": "DESCENDING"}]';
+var YEXT_TYPE = 'ce_sotd'
+
+// Format Entities:List Knowledge API request
+var apiUrl = `https://api.yext.com/v2/accounts/${YEXT_ACCOUNT_ID}/entities?api_key=${YEXT_API_KEY}&v=${YEXT_VERSION}&sortBy=${YEXT_SORT}&entityTypes=${YEXT_TYPE}`; 
+
+// Pull Yext Song data
+function getYextSotds() {
+    axios.get(apiUrl)
+    .then(function (response) {
+        return response.data.response.entities;
+    })
+    .catch(function (error) {
+        return "An error has occured.";
+    })
+}  */
 
 function addSotds(songList) {
     for (song in songList) {
