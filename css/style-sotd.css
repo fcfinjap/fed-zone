@@ -169,10 +169,11 @@ ul {
 }
 
 .sotd-title {
-  font-size: 100%;
+  font-size: vmin;
   letter-spacing: 2px;
   font-weight: bold;
   text-align: left;
+  white-space: nowrap;
 }
 
 .strokes-taat-title {
