@@ -6,7 +6,7 @@ var YEXT_SORT = '[{"datePosted": "DESCENDING"}]';
 var YEXT_TYPE = 'ce_sotd'
 
 // Format Entities:List Knowledge API request
-var apiUrl = `https://api.yext.com/v2/accounts/${YEXT_ACCOUNT_ID}/entities?api_key=${YEXT_API_KEY}&v=${YEXT_VERSION}&sortBy=${YEXT_SORT}&entityTypes=${YEXT_TYPE}`; 
+var apiUrl = `https://cors-anywhere.herokuapp.com/https://api.yext.com/v2/accounts/${YEXT_ACCOUNT_ID}/entities?api_key=${YEXT_API_KEY}&v=${YEXT_VERSION}&sortBy=${YEXT_SORT}&entityTypes=${YEXT_TYPE}`; 
 
 // Pull Yext Song data
 const getYextSotds = axios.get(apiUrl)
