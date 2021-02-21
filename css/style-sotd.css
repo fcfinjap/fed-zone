@@ -326,7 +326,7 @@ ul {
   }
 
   .sotd-content-container {
-    width: 120%;
+    width: 82%;
     height: 92%;
     margin-left: 2.5%;
     margin-right: 2.5%;
@@ -335,13 +335,6 @@ ul {
   .sotd-title {
     font-size: 80%;
     letter-spacing: 1px;
-  }
-
-  .strokes-taat-title {
-    font-size: 70%;
-    letter-spacing: 0.4px;
-    padding-top: 0.7%;
-    padding-bottom: 0%;
   }
 
   .sotd-description {
@@ -358,7 +351,7 @@ ul {
   }
 
   .sotd-link-box {
-    width: 25%;
+    width: auto;
     height: 100%;
   }
 
