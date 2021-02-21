@@ -31,9 +31,7 @@ const getYextSotds = axios.get(apiUrl)
     .catch((error) => console.error(error));
 
 function addSotds(songList) {
-    console.log(songList);
     for (song in songList) {
-        console.log(songList[song]);
         generateSotdDiv(songList[song]);
     }
 }
@@ -160,7 +158,6 @@ function ordinalSuffixOf(i) {
 }
 const displaySotds = async () => {
     const songs = await getYextSotds;
-    console.log(songs);
     addSotds(songs.data.response.entities);
 };
 
